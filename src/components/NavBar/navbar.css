@@ -1,0 +1,7 @@
+.navbar-brand{
+    font-weight: 900;
+    font-family: 'Chicle', cursive ;
+}
+.me, .nav-link{
+    color: #e84118 !important;
+}

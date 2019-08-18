@@ -1,0 +1,25 @@
+header{
+    background-image:linear-gradient(rgba(253, 243, 243, -0.6),rgba(199, 199, 199, 0)), url(images/header.jpg);
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+    background-attachment: fixed;
+    clip-path: polygon(100% 0, 100% 69%, 0 100%, 0 0);
+    color: #e84118;
+    z-index: -10;
+}
+.desc{
+    position: absolute;
+	top:50%;
+	left:40%;
+    transform: translate(-50%, -50%);
+    color:#fff;
+    z-index: 100;
+}
+.desc-p{
+    letter-spacing: 5px;
+    font-weight: 500;
+}
+.btn-light{
+    color: #e84118 !important;
+}
