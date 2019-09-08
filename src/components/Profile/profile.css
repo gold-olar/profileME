@@ -27,10 +27,6 @@
 /*--/content --*/
 img.admin {
     border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
     background: #dff0f738;
     padding: 0.1em;
     margin-bottom: 1em;
@@ -104,31 +100,7 @@ img.admin {
     margin-right: 0.5em;
 }
 
-/*----*
-.tab-main label:before {
-    font-family: fontawesome;
-    font-weight: normal;
-    margin-right: 10px;
-    opacity: 0;
-    display: none;
-}
-
-.tab-main label[for*='1']:before {
-    content: '\f1cb';
-}
-
-.tab-main label[for*='2']:before {
-    content: '\f17d';
-}
-
-.tab-main label[for*='3']:before {
-    content: '\f16c';
-}
-
-.tab-main label[for*='4']:before {
-    content: '\f171';
-}
-/*----*/
+/
 .tab-main label:hover {
     color: #e84118;
     cursor: pointer;
@@ -181,65 +153,6 @@ h4.sub-title.two {
 
 /*--//gallery--*/
 
-/*--//gallery--*/
-.contact-form .form-control input {
-    display: block;
-
-}
-
-form.contact-form {
-    margin-top: 2em;
-}
-
-
-.contact-form .form-control,
-.contact-form textarea {
-    padding: 1em 1em;
-    color: #495057;
-    border: none;
-    border-radius: 0px;
-    outline: none;
-    font-size: 0.9em;
-    letter-spacing: 1px;
-}
-
-.contact-form textarea {
-    min-height: 10em;
-    -webkit-appearance: none;
-    width: 100%;
-}
-
-.contact-form p {
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #fff;
-    font-size: 0.85em;
-    text-align: left;
-}
-
-.contact-form button.btn {
-    background: #e84118;
-    padding: 0.8em 3em;
-    font-size: 15px;
-    letter-spacing: 2px;
-    color: #fff;
-    border-radius: 0px;
-
-    text-transform: uppercase;
-    font-weight: 800;
-    transition: 0.5s all;
-    -webkit-transition: 0.5s all;
-    -moz-transition: 0.5s all;
-    -o-transition: 0.5s all;
-    -ms-transition: 0.5s all;
-    border: none;
-}
-
-.contact-form button.btn:hover {
-    opacity: 0.8;
-}
-
-/* //contact form */
 
 .copy-ppmlayouts-right p {
 
@@ -262,9 +175,6 @@ form.contact-form {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -o-border-radius: 50%;
     margin: 0.5em;
     background: #fff;
     display: inline-block;
