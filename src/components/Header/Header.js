@@ -1,14 +1,15 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-import NavBar from '../NavBar/Navbar';
+import Features from '../Features/Features';
+import NavigationBar from '../NavBar/Navbar';
 import './header.css';
 
 const Header = ()=> {
   
     return (
      <header>
-            <NavBar/>
+            <NavigationBar/>
         
 
         <div className= 'desc'>
@@ -16,6 +17,7 @@ const Header = ()=> {
                 <p className="desc-p"> Get personalized profile pages.</p>
                <NavLink to='/signup'> <button type="button" class="btn btn-light">GET STARTED.</button></NavLink>
         </div>
+        <Features/>
      </header>
     );
 

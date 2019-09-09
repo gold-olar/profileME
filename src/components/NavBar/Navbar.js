@@ -1,37 +1,53 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+} from 'reactstrap';
 import './navbar.css'
 
-const NavBar = () => {
 
-    return (
-        <div className='navigation-bar'>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="/">PROFILE<span className="me">ME</span> </a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
+class NavigationBar extends React.Component {
+    constructor(props) {
+        super(props);
 
-                <div className="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul className="navbar-nav ml-auto">
-                        <li className="nav-item ">
-                            <NavLink to='/' className="nav-link"> Home </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to='/login' className="nav-link"> Login </NavLink>
-                        </li>
-
-                        <li className="nav-item">
-                            <NavLink to='/signup' className="nav-link">Sign Up </NavLink>
-                        </li>
-                    </ul>
-
-                </div>
-            </nav>
-        </div>
-    );
-
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            isOpen: false
+        };
+    }
+    toggle() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
+    render() {
+        return (
+            <div>
+                <Navbar color="light" light expand="md">
+                    <NavbarBrand href="/">PROFILE<span className="me">ME</span></NavbarBrand>
+                    <NavbarToggler onClick={this.toggle} />
+                    <Collapse isOpen={this.state.isOpen} navbar>
+                        <Nav className="ml-auto" navbar>
+                            <NavItem>
+                                <NavLink to='/' className="nav-link"> HOME </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink to='/signup' className="nav-link"> SIGN UP </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink to='/login' className="nav-link"> LOGIN </NavLink>
+                            </NavItem>
+                        </Nav>
+                    </Collapse>
+                </Navbar>
+            </div>
+        );
+    }
 }
 
-export default NavBar;
+export default NavigationBar;
