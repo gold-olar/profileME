@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 import Navbar from '../NavBar/Navbar';
-
+import axios from 'axios';
 
 
 
@@ -13,22 +13,45 @@ class Signup extends Component {
             email: '',
             password: '',
             confirmPassword: '',
+            loading: false,
+            errorMessage: ''
         };
     }
 
     onInputChange = (event, inputIdentifier) => {
         console.log(event.target.value);
         this.setState({
-            [inputIdentifier] : event.target.value,
+            [inputIdentifier]: event.target.value,
         })
     }
 
-    onFormSubmit =(event) => {
+    onFormSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state);
-        // Fetch Api Here
+        this.setState({loading: true })
+
+        let chosenPassword = this.state.password;
+        let confirmPassword = this.state.confirmPassword;
+        const { username, email, password } = this.state;
+
+        if (chosenPassword === confirmPassword) {
+            this.setState({errorMessage : " "});
+            
+            axios.post('/register', {
+                username, email, password
+            })
+            .then(response => {
+                    console.log(response);
+                })
+            .catch(error => {
+                    console.log(error);
+                })
+        }else{
+            this.setState({
+                errorMessage: "Passwords dont match",
+                loading: false
+            })
+        }
     }
- 
 
     render() {
         return (
@@ -39,24 +62,28 @@ class Signup extends Component {
                         <div className="top-content-style">
                         </div>
                         <form action="#" method="post">
+                            
                             <span className="login-title">PROFILE<span className="me">ME</span> </span>
+                                <p> {this.state.errorMessage}</p>
                             <div className="input">
-                                <input onChange = {(event) => this.onInputChange(event, "username")} type="text" placeholder="Username" name="username" required />
+                                <input onChange={(event) => this.onInputChange(event, "username")} type="text" placeholder="Username" name="username" required />
                                 <span className="fa fa-user"></span>
                             </div>
                             <div className="input">
-                                <input  onChange = {(event) => this.onInputChange(event, "email")} type="email" placeholder="Email" name="email" required />
+                                <input onChange={(event) => this.onInputChange(event, "email")} type="email" placeholder="Email" name="email" required />
                                 <span className="fa fa-envelope"></span>
                             </div>
                             <div className="input">
-                                <input  onChange = {(event) => this.onInputChange(event, "password")} type="password" placeholder="Password" name="password" required />
+                                <input onChange={(event) => this.onInputChange(event, "password")} type="password" placeholder="Password" name="password" required />
                                 <span className="fa fa-unlock"></span>
                             </div>
                             <div className="input">
-                                <input  onChange = {(event) => this.onInputChange(event, "confirmPassword")} type="password" placeholder="Confirm Password" name="Confirmpassword" required />
+                                <input onChange={(event) => this.onInputChange(event, "confirmPassword")} type="password" placeholder="Confirm Password" name="Confirmpassword" required />
                                 <span className="fa fa-lock"></span>
                             </div>
-                            <button  onClick = {this.onFormSubmit} type="submit" className="submit-btn btn btn-light"> SIGN UP</button>
+                            {this.state.loading ? <div className="spinner-grow text-primary" role="status">
+                                <span className="sr-only">Loading...</span>
+                            </div> : <button onClick={this.onFormSubmit} type="submit" className="submit-btn btn btn-light"> SIGN UP</button>}
                         </form>
                         <NavLink to='/forgot-password' className="bottom-text-pmls">Forgot Password?</NavLink>
                         <hr />
