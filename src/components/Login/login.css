@@ -188,3 +188,34 @@ a.bottom-text-pmls {
 
 
 
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .sub-main-pm form {
+        margin: 0em 2em 0em;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 768px) {
+    .sub-main-pm form {
+        margin: 0em 2.5em 0em;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+    .sub-main-pm form {
+        margin: -1em 2.5em 0em;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+} 
