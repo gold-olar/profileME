@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import Features from '../Features/Features';
 import NavigationBar from '../NavBar/Navbar';
+import Footer from '../Footer/Footer';
 import './header.css';
 
 const Header = () => {
@@ -21,6 +22,7 @@ const Header = () => {
 
             </header>
             <Features/>
+            <Footer/>
         </section>
     );
 
