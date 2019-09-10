@@ -5,3 +5,6 @@
 .me, .nav-link{
     color: #e84118 !important;
 }
+.navbarr{
+    z-index: 100;
+}
