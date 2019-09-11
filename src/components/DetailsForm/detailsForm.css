@@ -1,0 +1,14 @@
+.detailsform_bg{
+    padding-bottom: 100px;
+    padding-top: 100px;
+    padding-left: auto;
+    padding-right: auto;
+    background: #e84118;
+}
+.card{
+    width: 80%;
+    margin: auto;
+}
+.card-form{
+    padding: 5%;
+}

@@ -36,6 +36,9 @@ class NavigationBar extends React.Component {
                             <NavItem>
                                 <NavLink to='/' className="nav-link"> HOME </NavLink>
                             </NavItem>
+                            {/* <NavItem>
+                                <NavLink to='#features' className="nav-link">FEATURES </NavLink>
+                            </NavItem> */}
                             <NavItem>
                                 <NavLink to='/signup' className="nav-link"> SIGN UP </NavLink>
                             </NavItem>

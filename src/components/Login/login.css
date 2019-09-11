@@ -82,6 +82,20 @@ p.legend span {
     background: #fff;
     box-shadow: 2px 5px 16px 2px rgba(16, 16, 16, 0.18);
 }
+.input textarea{
+    width: 100%;
+    padding: 13px 10px 13px 34px;
+    display: block;
+    border: none;
+    border: 1px solid #e84118;
+    color: #000;
+    box-sizing: border-box;
+    font-size: 13px;
+    outline: none;
+    letter-spacing: 1px;
+    background: #fff;
+    box-shadow: 2px 5px 16px 2px rgba(16, 16, 16, 0.18);
+}
 .submit-btn{
     border: 1px solid #e84118 !important;
     font-weight: 600;
@@ -187,9 +201,12 @@ a.bottom-text-pmls {
 .spinner-grow{
     background-color: #e84118 !important;
 }
-
-
-
+.errorMessage{
+    color: #e84118;
+    margin-top: 3%;
+    font-size: 60%;
+    font-weight: 300;
+}
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {

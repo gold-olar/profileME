@@ -21,7 +21,7 @@ const Header = () => {
                 </div>
 
             </header>
-            <Features/>
+            <Features id="features"/>
             <Footer/>
         </section>
     );

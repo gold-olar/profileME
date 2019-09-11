@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink , Route, BrowserRouter} from 'react-router-dom';
 import Navbar from '../NavBar/Navbar';
 import axios from 'axios';
+import DetailsForm from '../DetailsForm/DetailsForm';
+
 
 
 
@@ -14,12 +16,11 @@ class Signup extends Component {
             password: '',
             confirmPassword: '',
             loading: false,
-            errorMessage: ''
+            errorMessage: '',
         };
     }
 
     onInputChange = (event, inputIdentifier) => {
-        console.log(event.target.value);
         this.setState({
             [inputIdentifier]: event.target.value,
         })
@@ -27,29 +28,36 @@ class Signup extends Component {
 
     onFormSubmit = (event) => {
         event.preventDefault();
-        this.setState({loading: true })
-
-        let chosenPassword = this.state.password;
-        let confirmPassword = this.state.confirmPassword;
         const { username, email, password } = this.state;
+        if (username && email && password) {
+            console.log(username, email, password)
+            this.setState({ loading: true, errorMessage: " " })
 
-        if (chosenPassword === confirmPassword) {
-            this.setState({errorMessage : " "});
-            
-            axios.post('/register', {
-                username, email, password
-            })
-            .then(response => {
-                    console.log(response);
+            let chosenPassword = this.state.password;
+            let confirmPassword = this.state.confirmPassword;
+
+            if (chosenPassword === confirmPassword) {
+                this.setState({ errorMessage: " " });
+
+                axios.post('https://profilemeeapi.herokuapp.com/api/register/', {
+                    username, email, password
                 })
-            .catch(error => {
-                    console.log(error);
+                    .then(response => {
+                       console.log(response.data);
+                       
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            } else {
+                this.setState({
+                    errorMessage: "Passwords don't match.",
+                    loading: false
                 })
+            }
         }else{
-            this.setState({
-                errorMessage: "Passwords dont match",
-                loading: false
-            })
+            return this.setState({errorMessage: "Please fill in required fields."})
+
         }
     }
 
@@ -62,9 +70,11 @@ class Signup extends Component {
                         <div className="top-content-style">
                         </div>
                         <form action="#" method="post">
-                            
+
                             <span className="login-title">PROFILE<span className="me">ME</span> </span>
-                                <p> {this.state.errorMessage}</p>
+
+                            <p className="errorMessage"> {this.state.errorMessage}</p>
+
                             <div className="input">
                                 <input onChange={(event) => this.onInputChange(event, "username")} type="text" placeholder="Username" name="username" required />
                                 <span className="fa fa-user"></span>

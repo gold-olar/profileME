@@ -6,6 +6,29 @@ import './login.css';
 
 
 class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: '',
+            loading: false,
+            errorMessage: '',
+        };
+    }
+
+
+    onInputChange = (event, inputIdentifier) => {
+        this.setState({
+            [inputIdentifier]: event.target.value,
+        })
+    }
+
+
+    onFormSubmit = (event) => {
+        event.preventDefault();
+        console.log(this.state)
+    }
+
     render() {
         return (
             <div className="login-page">
@@ -16,17 +39,17 @@ class Login extends Component {
                           
 
                         </div>
-                        <form action="#" method="post">
+                        <form action="#" >
                             <span className="login-title">PROFILE<span className="me">ME</span> </span>
                             <div className="input">
-                                <input type="email" placeholder="Email" name="email" required />
+                                <input  onChange={(event) => this.onInputChange(event, "email")} type="email" placeholder="Email" name="email" required />
                                 <span className="fa fa-envelope"></span>
                             </div>
                             <div className="input">
-                                <input type="password" placeholder="Password" name="password" required />
+                                <input  onChange={(event) => this.onInputChange(event, "pasword")} type="password" placeholder="Password" name="password" required />
                                 <span className="fa fa-unlock"></span>
                             </div>
-                            <button type="submit" className="submit-btn btn btn-light"> LOGIN</button>
+                            <button onClick={this.onFormSubmit}  type="submit" className="submit-btn btn btn-light"> LOGIN</button>
                         </form>
                         <NavLink to='/forgot-password' className="bottom-text-pmls">Forgot Password?</NavLink>
                         <hr />

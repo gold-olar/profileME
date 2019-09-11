@@ -6,41 +6,28 @@ import './footer.css'
 const Footer = () => {
     return (
         <section>
-            <div class="__footer">
-                <div class="container">
-
-                    <div class="__footer_grids">
-
-                        <div class="__footer_grid">
-                            <div class="col-md-5 __footer_grid_left">
-                                <div class="__footer_grid_leftl">
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <div className="__footer">
+                <footer className="py-5">
+                    <div className="container">
+                        <div className="_info-grids">
+                            <div className="_-grid-left _-grid-right text-center">
+                                <div className="social mb-4">
+                                    <ul>
+                                        <li><a href="http://facebook.com/profileme"><span className="fa mr-2 fa-facebook"></span></a></li>
+                                        <li><a href="http://facebook.com/profileme"><span className="fa mr-2 fa-facebook"></span></a></li>
+                                        <li><a href="http://facebook.com/profileme"><span className="fa mr-2 fa-facebook"></span></a></li>
+                                        <li><a href="http://facebook.com/profileme"><span className="fa mr-2 fa-facebook"></span></a></li>
+                                        <li><a href="http://facebook.com/profileme"><span className="fa mr-2 fa-facebook"></span></a></li>
+                                        
+                                    </ul>
                                 </div>
-                                <div class="__footer_grid_leftr">
-                                    <h4>Location</h4>
-                                    <p>Obafemi Awolowo University, Ile-Ife</p>
-                                </div>
-                                <div class="clearfix"> </div>
                             </div>
-                            
-                            <div class="col-md-5 __footer_grid_left">
-                                <div class="__footer_grid_leftl">
-                                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                                </div>
-                                <div class="__footer_grid_leftr">
-                                    <h4>Email</h4>
-                                   <p> teamalphadevs@gmail.com </p>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            
-                            <div class="clearfix"> </div>
+                        </div>
+                        <div className="copyright text-center">
+                            <p> © {new Date().getFullYear()} alphaDevs. All Rights Reserved  </p>
                         </div>
                     </div>
-                </div>
-                <div class="__footer_pos">
-                    <p>© {new Date().getFullYear()} ProfileMe. All Rights Reserved  </p>
-                </div>
+                </footer>
             </div>
 
         </section>
