@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import Navbar from '../NavBar/Navbar';
 import './login.css';
 
@@ -8,31 +8,20 @@ import './login.css';
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            email: '',
-            password: '',
-            loading: false,
-            errorMessage: '',
-        };
+        this.state ={
+            hello : '',
+        }
     }
-
-
-    onInputChange = (event, inputIdentifier) => {
-        this.setState({
-            [inputIdentifier]: event.target.value,
-        })
-    }
-
-
-    onFormSubmit = (event) => {
-        event.preventDefault();
-        console.log(this.state)
-    }
-
+    
     render() {
+        let redirect = null;
+        if(this.props.auth){
+            redirect = <Redirect to = "/details"/>
+        }
         return (
             <div className="login-page">
                 <Navbar />
+                {redirect}
                 <div className="sub-main-pm">
                     <div className="bg-content-pmpvt">
                         <div className="top-content-style">
@@ -41,15 +30,19 @@ class Login extends Component {
                         </div>
                         <form action="#" >
                             <span className="login-title">PROFILE<span className="me">ME</span> </span>
+                            <p className="errorMessage"> {this.props.errorMessage}</p>
+
                             <div className="input">
-                                <input  onChange={(event) => this.onInputChange(event, "email")} type="email" placeholder="Email" name="email" required />
+                                <input  onChange={(event) => this.props.onInputChange(event, "username")} type="email" placeholder="Username" name="username" required />
                                 <span className="fa fa-envelope"></span>
                             </div>
                             <div className="input">
-                                <input  onChange={(event) => this.onInputChange(event, "pasword")} type="password" placeholder="Password" name="password" required />
+                                <input  onChange={(event) => this.props.onInputChange(event, "password")} type="password" placeholder="Password" name="password" required />
                                 <span className="fa fa-unlock"></span>
                             </div>
-                            <button onClick={this.onFormSubmit}  type="submit" className="submit-btn btn btn-light"> LOGIN</button>
+                            {this.props.loading ? <div className="spinner-grow text-primary" role="status">
+                                <span className="sr-only">Loading...</span>
+                            </div> : <button onClick={this.props.onLoginFormSubmit} type="submit" className="submit-btn btn btn-light"> LOGIN </button>}
                         </form>
                         <NavLink to='/forgot-password' className="bottom-text-pmls">Forgot Password?</NavLink>
                         <hr />

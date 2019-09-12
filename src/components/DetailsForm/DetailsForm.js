@@ -45,7 +45,7 @@ class DetailsForm extends Component {
                         <FormGroup row>
                             <Label for="DisplayPicture" sm={2}>Display Picture</Label>
                             <Col className="input" sm={10}>
-                                <Input type="file" name="file" id="exampleFile" />
+                                <Input type="file" name="image"/>
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -63,13 +63,13 @@ class DetailsForm extends Component {
                             <Col  sm={2}>
                             </Col>
                             <Col className="input" sm={3}>
-                                <Input type="url" name="github" placeholder="GitHub" />
+                                <Input type="url" name="dribble" placeholder="Dribble" />
                             </Col>
                             <Col className="input" sm={3}>
-                                <Input type="url" name="github" placeholder="GitHub" />
+                                <Input type="url" name="behance" placeholder="Behance" />
                             </Col>
                             <Col className="input" sm={3}>
-                                <Input type="url" name="github" placeholder="GitHub" />
+                                <Input type="url" name="twitter" placeholder="Twitter" />
                             </Col>
                         </FormGroup>
 

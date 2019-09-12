@@ -9,8 +9,8 @@ import './features.css'
 
 const Features = () => {
     return (
-        <section>
-            <Container>
+        <section id = "features">
+            <Container >
                 <Row>
                     <Col><h3 className="text-center features-header"> FEATURES </h3></Col>
                 </Row>
