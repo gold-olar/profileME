@@ -9,7 +9,7 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state ={
-            hello : '',
+            tryingToAvoidUselessConstructor : '',
         }
     }
     
@@ -42,8 +42,10 @@ class Login extends Component {
                                 <span className="sr-only">Loading...</span>
                             </div> : <button onClick={this.props.onLoginFormSubmit} type="submit" className="submit-btn btn btn-light"> LOGIN </button>}
                         </form>
-                        <NavLink to='/forgot-password' className="bottom-text-pmls">Forgot Password?</NavLink>
-                        <hr />
+                        <NavLink to='' className="bottom-text-pmls">Forgot Password?</NavLink>
+                        <br/>
+                        <br/>
+                        {/* <hr />
                         <p className="or bottom-text-pmls" >Or Login with</p>
                         <div className="other-options">
                             <a href="http://google.com" className="btn-face m-b-20">
@@ -54,7 +56,7 @@ class Login extends Component {
                             <a href="http://google.com" className="btn-google m-b-20">
                             <span className="fa fa-google"></span>  Google
         					</a>
-                        </div>
+                        </div> */}
 
 
                     </div>

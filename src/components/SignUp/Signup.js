@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import {  Redirect } from 'react-router-dom';
 import Navbar from '../NavBar/Navbar';
 
 
@@ -52,8 +52,7 @@ class Signup extends Component {
                                 <span className="sr-only">Loading...</span>
                             </div> : <button onClick={this.props.onSignupFormSubmit} type="submit" className="submit-btn btn btn-light"> SIGN UP</button>}
                         </form>
-                        <NavLink to='/forgot-password' className="bottom-text-pmls">Forgot Password?</NavLink>
-                        <hr />
+                        {/* <hr />
                         <p className="or bottom-text-pmls" >Or Sign up with</p>
                         <div className="other-options">
                             <a href="http://google.com" className="btn-face m-b-20">
@@ -64,7 +63,7 @@ class Signup extends Component {
                             <a href="http://google.com" className="btn-google m-b-20">
                                 <span className="fa fa-google"></span>  Google
         					</a>
-                        </div>
+                        </div> */}
 
 
                     </div>

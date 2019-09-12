@@ -16,6 +16,9 @@ header{
     color:#fff;
     z-index: 90;
 }
+h1{
+    font-weight: 501 !important;
+}
 .desc-p{
     letter-spacing: 5px;
     font-weight: 500;

@@ -25,10 +25,7 @@ class NavigationBar extends Component {
             isOpen: !this.state.isOpen
         });
     }
-    componentDidMount(){
-        console.log(this.props.auth);
-        console.log(this.props.logOut);
-    }
+  
     render() {
         return (
             <div>

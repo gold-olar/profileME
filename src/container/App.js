@@ -33,6 +33,7 @@ class App extends Component {
     })
   }
 
+
   onSignupFormSubmit = async (event) => {
     event.preventDefault();
     const { username, email, password } = this.state;
@@ -50,6 +51,7 @@ class App extends Component {
           if (signUp.status === 201) {
             const login = await axios.post('http://profilemeeapi.herokuapp.com/api/login/', { username, password });
             const { Token } = login.data;
+
             axios.defaults.headers.common['Authorization'] = `Token ${Token}`;
             return this.setState({ auth: true });
           }
@@ -61,7 +63,7 @@ class App extends Component {
         this.setState({
           errorMessage: "Passwords don't match.",
           loading: false
-        })
+        });
       }
     } else {
       return this.setState({ errorMessage: "Please fill in required fields." });
@@ -127,6 +129,8 @@ class App extends Component {
                 />} />
             }
 
+
+
             <Route
               path='/signup' exact
               render={(props) =>
@@ -154,6 +158,7 @@ class App extends Component {
 
         </div>
       </BrowserRouter>
+
     );
   }
 }
