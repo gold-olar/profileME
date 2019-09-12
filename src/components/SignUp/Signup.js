@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {  Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Navbar from '../NavBar/Navbar';
-
+import { GoogleLogin } from 'react-google-login';
 
 
 class Signup extends Component {
@@ -11,7 +11,10 @@ class Signup extends Component {
 
         }
     }
-    
+
+    responseGoogle = (response) => {
+        console.log(response);
+      }
 
     render() {
         let redirect = null;
@@ -52,18 +55,19 @@ class Signup extends Component {
                                 <span className="sr-only">Loading...</span>
                             </div> : <button onClick={this.props.onSignupFormSubmit} type="submit" className="submit-btn btn btn-light"> SIGN UP</button>}
                         </form>
-                        {/* <hr />
-                        <p className="or bottom-text-pmls" >Or Sign up with</p>
+                        <hr />
+                        <p className="or bottom-text-pmls" >Or </p>
                         <div className="other-options">
-                            <a href="http://google.com" className="btn-face m-b-20">
-                                <span className="fa fa-facebook-f"></span>
-                                Facebook
-                        	</a>
+                            <GoogleLogin
+                                clientId={'658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'}
+                                onSuccess={this.responseGoogle}
+                                onFailure={this.responseGoogle} >
+                                
+                                <span> Signup with Google</span>
+                            </GoogleLogin>
 
-                            <a href="http://google.com" className="btn-google m-b-20">
-                                <span className="fa fa-google"></span>  Google
-        					</a>
-                        </div> */}
+                           
+                        </div>
 
 
                     </div>
@@ -75,3 +79,5 @@ class Signup extends Component {
 }
 
 export default Signup;
+
+

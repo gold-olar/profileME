@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink , Link} from 'react-router-dom';
 import {
     Collapse,
     Navbar,
@@ -37,9 +37,7 @@ class NavigationBar extends Component {
                             <NavItem>
                                 <NavLink to='/' className="nav-link"> HOME </NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink to={{ pathname: '/', hash: "features" }} className="nav-link">FEATURES </NavLink>
-                            </NavItem>
+                            
 
                             {this.props.auth ?
                                 <NavItem>
