@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, Fragment} from 'react';
 import { NavLink } from 'react-router-dom';
 import {
     Collapse,
@@ -11,7 +11,7 @@ import {
 import './navbar.css'
 
 
-class NavigationBar extends React.Component {
+class NavigationBar extends Component {
     constructor(props) {
         super(props);
 
@@ -25,6 +25,10 @@ class NavigationBar extends React.Component {
             isOpen: !this.state.isOpen
         });
     }
+    componentDidMount(){
+        console.log(this.props.auth);
+        console.log(this.props.logOut);
+    }
     render() {
         return (
             <div>
@@ -37,14 +41,23 @@ class NavigationBar extends React.Component {
                                 <NavLink to='/' className="nav-link"> HOME </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink to={{pathname :'/', hash: "features"  }} className="nav-link">FEATURES </NavLink>
+                                <NavLink to={{ pathname: '/', hash: "features" }} className="nav-link">FEATURES </NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink to='/signup' className="nav-link"> SIGN UP </NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink to='/login' className="nav-link"> LOGIN </NavLink>
-                            </NavItem>
+
+                            {this.props.auth ?
+                                <NavItem>
+                                    <NavLink to='/logout' onClick={this.props.logOut} className="nav-link"> LOGOUT </NavLink>
+                                </NavItem>
+                                :
+                                <Fragment>
+                                    <NavItem>
+                                        <NavLink to='/signup' className="nav-link"> SIGN UP </NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink to='/login' className="nav-link"> LOGIN </NavLink>
+                                    </NavItem>
+                                </Fragment>
+                            }
                         </Nav>
                     </Collapse>
                 </Navbar>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import Navbar from '../NavBar/Navbar';
 
 
@@ -11,14 +11,17 @@ class Signup extends Component {
 
         }
     }
-    componentDidMount() {
-        console.log('hello')
-    }
+    
 
     render() {
+        let redirect = null;
+        if (this.props.auth) {
+            redirect = <Redirect to="/details" />
+        }
         return (
             <div className="login-page">
                 <Navbar />
+                {redirect}
                 <div className="sub-main-pm">
                     <div className="bg-content-pmpvt">
                         <div className="top-content-style">

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Row, Label, Input, Col } from 'reactstrap';
+import NavigationBar from '../NavBar/Navbar';
 import './detailsForm.css'
 
 
@@ -13,7 +14,9 @@ class DetailsForm extends Component {
     }
     render() {
         return (
-            <section className="detailsform_bg">
+            <section>
+                <NavigationBar auth = {this.props.auth} logOut = {this.props.logOut} />
+                <div className="detailsform_bg"> 
                 <div className="card">
 
                     <Form className="card-form">
@@ -81,6 +84,7 @@ class DetailsForm extends Component {
                     </Form>
 
 
+                </div>
                 </div>
             </section>
 

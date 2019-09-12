@@ -43,23 +43,20 @@ class App extends Component {
       let confirmPassword = this.state.confirmPassword;
 
       if (chosenPassword === confirmPassword) {
-        this.setState({ errorMessage: " " });
-        const signUp = await axios.post('http://profilemeeapi.herokuapp.com/api/register/', { username, email, password });
-        console.log(signUp.status);
+        try {
+          this.setState({ errorMessage: " " });
+          const signUp = await axios.post('http://profilemeeapi.herokuapp.com/api/register/', { username, email, password });
 
+          if (signUp.status === 201) {
+            const login = await axios.post('http://profilemeeapi.herokuapp.com/api/login/', { username, password });
+            const { Token } = login.data;
+            axios.defaults.headers.common['Authorization'] = `Token ${Token}`;
+            return this.setState({ auth: true });
+          }
+        } catch (error) {
+          return this.setState({ errorMessage: "There was a problem with Signing up.", loading: false });
 
-        if (signUp.status === 201) {
-          console.log(' e wan go login');
-          const login = await axios.post('http://profilemeeapi.herokuapp.com/api/login/', { username, password });
-          const { Token } = login.data;
-          axios.defaults.headers.common['Authorization'] = `Token ${Token}`;
-          this.setState({ auth: true });
-        } else {
-          this.setState({ errorMessage: "There was a probleming with Signing up..", loading: false });
-          return console.log('Signin wasnt succesful');
         }
-
-
       } else {
         this.setState({
           errorMessage: "Passwords don't match.",
@@ -77,19 +74,34 @@ class App extends Component {
 
     const { username, password } = this.state;
     if (username && password) {
-      this.setState({ loading: true, errorMessage: " " });
+      try {
+        this.setState({ loading: true, errorMessage: " " });
 
-      const login = await axios.post('http://profilemeeapi.herokuapp.com/api/login/', { username, password });
-      const { Token } = login.data;
-      axios.defaults.headers.common['Authorization'] = `Token ${Token}`;
-      this.setState({ auth: true });
+        const login = await axios.post('http://profilemeeapi.herokuapp.com/api/login/', { username, password });
+        const { Token } = login.data;
+        axios.defaults.headers.common['Authorization'] = `Token ${Token}`;
+        this.setState({ auth: true });
+      } catch (error) {
+        this.setState({ loading: false, errorMessage: "Invalid Username or Password" })
+
+      }
 
     } else {
       return this.setState({ errorMessage: "Please fill in required fields." });
     }
   }
 
-
+  logOut = () => {
+    this.setState({
+      auth: false,
+      loading: false,
+      username: '',
+      password: '',
+      email: '',
+      errorMessage: '',
+      confirmPassword: '',
+    })
+  }
 
 
 
@@ -97,10 +109,24 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Route path='/' exact component={Header} />
+
+          <Route path='/' exact render={(props) => <Header {...props} auth={this.state.auth} logOut={this.logOut} />} />
 
           <Switch>
-            {this.state.auth ? <Route path='/details' exact component={DetailsForm} /> : <Route path='/details' exact component={Login} />}
+
+            {this.state.auth ?
+              <Route path='/details' exact render={(props) => <DetailsForm {...props} auth={this.state.auth} logOut={this.logOut} />} />
+              :
+              <Route path='/details' exact render={(props) =>
+                <Login
+                  {...props} onInputChange={this.onInputChange}
+                  onLoginFormSubmit={this.onLoginFormSubmit}
+                  loading={this.state.loading}
+                  errorMessage={this.state.errorMessage}
+                  auth={this.state.auth}
+                />} />
+            }
+
             <Route
               path='/signup' exact
               render={(props) =>
@@ -108,7 +134,7 @@ class App extends Component {
                   onSignupFormSubmit={this.onSignupFormSubmit}
                   loading={this.state.loading}
                   errorMessage={this.state.errorMessage}
-                  auth = {this.state.auth}
+                  auth={this.state.auth}
                 />
               }
             />
@@ -119,9 +145,10 @@ class App extends Component {
                 onLoginFormSubmit={this.onLoginFormSubmit}
                 loading={this.state.loading}
                 errorMessage={this.state.errorMessage}
-                auth = {this.state.auth}
+                auth={this.state.auth}
               />
             } />
+            <Redirect from="/logout" to="/login" />
             <Route path='/:name' component={Profile} />
           </Switch>
 

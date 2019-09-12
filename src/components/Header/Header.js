@@ -6,12 +6,12 @@ import NavigationBar from '../NavBar/Navbar';
 import Footer from '../Footer/Footer';
 import './header.css';
 
-const Header = () => {
+const Header = ({auth, logOut}) => {
 
     return (
         <section>
             <header>
-                <NavigationBar />
+                <NavigationBar auth = {auth} logOut = {logOut} />
 
 
                 <div className='desc'>

@@ -25,16 +25,14 @@ class Login extends Component {
                 <div className="sub-main-pm">
                     <div className="bg-content-pmpvt">
                         <div className="top-content-style">
-                          
-
                         </div>
                         <form action="#" >
                             <span className="login-title">PROFILE<span className="me">ME</span> </span>
                             <p className="errorMessage"> {this.props.errorMessage}</p>
 
                             <div className="input">
-                                <input  onChange={(event) => this.props.onInputChange(event, "username")} type="email" placeholder="Username" name="username" required />
-                                <span className="fa fa-envelope"></span>
+                                <input  onChange={(event) => this.props.onInputChange(event, "username")} type="text" placeholder="Username" name="username" required />
+                                <span className="fa fa-user"></span>
                             </div>
                             <div className="input">
                                 <input  onChange={(event) => this.props.onInputChange(event, "password")} type="password" placeholder="Password" name="password" required />
