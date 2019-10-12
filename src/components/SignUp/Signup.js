@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Navbar from '../NavBar/Navbar';
-import { GoogleLogin } from 'react-google-login';
+// import { GoogleLogin } from 'react-google-login';
 
 
 class Signup extends Component {
@@ -12,9 +12,9 @@ class Signup extends Component {
         }
     }
 
-    responseGoogle = (response) => {
-        console.log(response);
-      }
+    // responseGoogle = (response) => {
+    //     console.log(response);
+    //   }
 
     render() {
         let redirect = null;
@@ -31,24 +31,25 @@ class Signup extends Component {
                         </div>
                         <form action="#" method="post">
 
+
                             <span className="login-title">PROFILE<span className="me">ME</span> </span>
 
                             <p className="errorMessage"> {this.props.errorMessage}</p>
 
                             <div className="input">
-                                <input onChange={(event) => this.props.onInputChange(event, "username")} type="text" placeholder="Username" name="username" required />
+                                <input onChange={(event) => this.props.onInputChange(event, "username")} type="text" placeholder="Username" name="username" required={true} />
                                 <span className="fa fa-user"></span>
                             </div>
                             <div className="input">
-                                <input onChange={(event) => this.props.onInputChange(event, "email")} type="email" placeholder="Email" name="email" required />
+                                <input onChange={(event) => this.props.onInputChange(event, "email")} type="email" placeholder="Email" name="email" required={true} />
                                 <span className="fa fa-envelope"></span>
                             </div>
                             <div className="input">
-                                <input onChange={(event) => this.props.onInputChange(event, "password")} type="password" placeholder="Password" name="password" required />
+                                <input onChange={(event) => this.props.onInputChange(event, "password")} type="password" placeholder="Password" name="password" required={true}/>
                                 <span className="fa fa-unlock"></span>
                             </div>
                             <div className="input">
-                                <input onChange={(event) => this.props.onInputChange(event, "confirmPassword")} type="password" placeholder="Confirm Password" name="Confirmpassword" required />
+                                <input onChange={(event) => this.props.onInputChange(event, "confirmPassword")} type="password" placeholder="Confirm Password" name="Confirmpassword" required={true} />
                                 <span className="fa fa-lock"></span>
                             </div>
                             {this.props.loading ? <div className="spinner-grow text-primary" role="status">
@@ -58,13 +59,13 @@ class Signup extends Component {
                         <hr />
                         <p className="or bottom-text-pmls" >Or </p>
                         <div className="other-options">
-                            <GoogleLogin
+                            {/* <GoogleLogin
                                 clientId={'658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'}
                                 onSuccess={this.responseGoogle}
                                 onFailure={this.responseGoogle} >
                                 
                                 <span> Signup with Google</span>
-                            </GoogleLogin>
+                            </GoogleLogin> */}
 
                            
                         </div>

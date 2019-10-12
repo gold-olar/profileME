@@ -17,20 +17,34 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
+      auth: false,
       username: '',
       email: '',
       password: '',
       confirmPassword: '',
-      loading: false,
       errorMessage: '',
-      auth: false,
+      firstName : '',
+      lastName: '',
+      introduction: '',
+      whatYouDo: '',
+      image: '',
+      facebook: '',
+      dribble: '',
+      linkedin :  '',
+      behance: '',
+      github: '',
+      twitter: '',
+      token:'',
+
     };
   }
 
   onInputChange = (event, inputIdentifier) => {
     this.setState({
       [inputIdentifier]: event.target.value,
-    })
+    });
+
   }
 
 
@@ -46,16 +60,28 @@ class App extends Component {
       if (chosenPassword === confirmPassword) {
         try {
           this.setState({ errorMessage: " " });
-          const signUp = await axios.post('http://profilemeeapi.herokuapp.com/api/register/', { username, email, password });
+          const signUp = await axios.post('/register', { username, email, password });
+          console.log(signUp)
 
-          if (signUp.status === 201) {
-            const login = await axios.post('http://profilemeeapi.herokuapp.com/api/login/', { username, password });
-            const { Token } = login.data;
 
-            axios.defaults.headers.common['Authorization'] = `Token ${Token}`;
-            return this.setState({ auth: true });
+          if (signUp.data.HttpStatus === 200) {
+            console.log('e wan go login');
+            const login = await axios.post('/login', { email, password });
+            
+            const { token } = login.data.data;
+            // console.log(token)
+
+
+            axios.defaults.headers.common['auth'] = token ;
+            return this.setState({ auth: true , loading: false, token});
+          }else{
+            // console.log(signUp.data.message)
+            this.setState({
+              loading: false, errorMessage: signUp.data.message
+            })
           }
         } catch (error) {
+          console.log(error);
           return this.setState({ errorMessage: "There was a problem with Signing up.", loading: false });
 
         }
@@ -74,17 +100,27 @@ class App extends Component {
   onLoginFormSubmit = async (event) => {
     event.preventDefault();
 
-    const { username, password } = this.state;
-    if (username && password) {
+    const { email, password } = this.state;
+    if (email && password) {
       try {
         this.setState({ loading: true, errorMessage: " " });
+        const login = await axios.post('/login', { email, password });
 
-        const login = await axios.post('http://profilemeeapi.herokuapp.com/api/login/', { username, password });
-        const { Token } = login.data;
-        axios.defaults.headers.common['Authorization'] = `Token ${Token}`;
-        this.setState({ auth: true });
+        if (login.data.status){
+          const { token } = login.data.data;
+          axios.defaults.headers.common['auth'] = token;
+          this.setState({ auth: true , loading:false, token });
+
+        } else {
+          this.setState({
+            loading: false,
+            errorMessage: login.data.message
+          })
+
+        } 
       } catch (error) {
-        this.setState({ loading: false, errorMessage: "Invalid Username or Password" })
+        this.setState({ loading: false, errorMessage: "Something went wrong." })
+        console.log(error)
 
       }
 
@@ -94,6 +130,8 @@ class App extends Component {
   }
 
   logOut = () => {
+    axios.defaults.headers.common['auth'] = " ";
+
     this.setState({
       auth: false,
       loading: false,
@@ -105,8 +143,34 @@ class App extends Component {
     })
   }
 
+  onDetailsFormSubmit = async (event) => {
+    event.preventDefault();
+    this.setState({
+      loading: true,
 
+    })
 
+    const {  firstName,lastName,introduction,whatYouDo, image, facebook,
+      dribble, linkedin, behance, github, twitter,
+     token} = this.state;
+    const profileDetails = { 
+      firstName,lastName,introduction,whatYouDo, image, facebook,
+      dribble, linkedin, behance, github, twitter }
+
+     if(firstName && lastName){
+      
+      const detailsFormResponse = await axios.put('/editProfile', profileDetails, {  headers: { token: token  }, });
+      if (detailsFormResponse){
+        this.setState({ loading: false, })
+        console.log(detailsFormResponse.data);
+
+      }
+
+     }else{
+       this.setState({errorMessage: "Please ensure you have filled all required fields."})
+     }
+
+  }
   render() {
     return (
       <BrowserRouter>
@@ -117,7 +181,14 @@ class App extends Component {
           <Switch>
 
             {this.state.auth ?
-              <Route path='/details' exact render={(props) => <DetailsForm {...props} auth={this.state.auth} logOut={this.logOut} />} />
+              <Route path='/details' exact render={(props) => <DetailsForm
+                {...props} auth={this.state.auth}
+                logOut={this.logOut}
+                onInputChange={this.onInputChange}
+                loading={this.state.loading}
+                onDetailsFormSubmit={this.onDetailsFormSubmit}
+
+              />} />
               :
               <Route path='/details' exact render={(props) =>
                 <Login

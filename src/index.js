@@ -2,23 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
 import App from './container/App';
-// import axios from 'axios';
+import axios from 'axios';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// axios.defaults.baseURL = 'http://localhost:3001/api';
 
-// axios.defaults.baseURL = 'http://profilemeeapi.herokuapp.com/api';
-// axios.defaults.headers.post['Content-Type'] = 'application/json';
-
-
-// axios.interceptors.request.use(request =>{
-//     // console.log(request);
-//     console.log(request.body);
-//     console.log(request.headers);
-// })
-
-
-
+axios.defaults.baseURL = 'https://profilemeapi.herokuapp.com/api';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
 ReactDOM.render(<App />, document.getElementById('root'));

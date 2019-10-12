@@ -12,79 +12,89 @@ class DetailsForm extends Component {
 
         }
     }
+
+    componentDidMount() {
+        console.log(this.props);
+    }
+
     render() {
         return (
             <section>
-                <NavigationBar auth = {this.props.auth} logOut = {this.props.logOut} />
-                <div className="detailsform_bg"> 
-                <div className="card">
+                <NavigationBar auth={this.props.auth} logOut={this.props.logOut} />
+                <div className="detailsform_bg">
+                    <div className="card">
 
-                    <Form className="card-form">
-                        <Row>
-                            <Col><h3 className="text-center features-header"> PORTFOLIO DETAILS </h3></Col>
-                        </Row>
+                        <Form className="card-form">
+                            <Row>
+                                <Col><h3 className="text-center features-header"> PORTFOLIO DETAILS </h3></Col>
+                            </Row>
+                            <p className="errorMessage"> {this.props.errorMessage}</p>
 
-                        <FormGroup row>
-                            <Label for="Name" sm={2}>Name</Label>
-                            <Col className="input" sm={5}>
-                                <Input type="text" name="firstName" placeholder="First Name" />
-                            </Col>
-                            <Col className="input" sm={5}>
-                                <Input type="text" name="lastName" placeholder="Last Name" />
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                            <Label for="Introduction" sm={2}>Introduction</Label>
-                            <Col className="input" sm={10}>
-                                <Input type="textarea" name="introduction" placeholder="I'm an enthusiastic developer and I am ready to take on challenges... " />
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                            <Label for="WhatYouDo" sm={2}>What You Do</Label>
-                            <Col className="input" sm={10}>
-                                <Input type="textarea" name="whatYouDo" placeholder="I'm a badass web developer. I write Javascript ...." />
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                            <Label for="DisplayPicture" sm={2}>Display Picture</Label>
-                            <Col className="input" sm={10}>
-                                <Input type="file" name="image"/>
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                            <Label for="SocialLinks" sm={2}>Social Links</Label>
-                            <Col className="input" sm={3}>
-                                <Input type="url" name="facebook" placeholder="Facebook" />
-                                
-                            </Col>
-                            <Col className="input" sm={3}>
-                                <Input type="url" name="linkedin" placeholder="LinkedIn" />
-                            </Col>
-                            <Col className="input" sm={3}>
-                                <Input type="url" name="github" placeholder="GitHub" />
-                            </Col>
-                            <Col  sm={2}>
-                            </Col>
-                            <Col className="input" sm={3}>
-                                <Input type="url" name="dribble" placeholder="Dribble" />
-                            </Col>
-                            <Col className="input" sm={3}>
-                                <Input type="url" name="behance" placeholder="Behance" />
-                            </Col>
-                            <Col className="input" sm={3}>
-                                <Input type="url" name="twitter" placeholder="Twitter" />
-                            </Col>
-                        </FormGroup>
+                            <FormGroup row>
+                                <Label for="Name" sm={2}>Name</Label>
+                                <Col className="input" sm={5}>
+                                    <Input type="text" onChange={(event) => this.props.onInputChange(event, "firstName")} name="firstName" placeholder="First Name" />
+                                </Col>
+                                <Col className="input" sm={5}>
+                                    <Input type="text" onChange={(event) => this.props.onInputChange(event, "lastName")} name="lastName" placeholder="Last Name" />
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Label for="Introduction" sm={2}>Introduction</Label>
+                                <Col className="input" sm={10}>
+                                    <Input type="textarea" name="introduction" onChange={(event) => this.props.onInputChange(event, "introduction")}
+                                        placeholder="I'm an enthusiastic developer and I am ready to take on challenges... " />
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Label for="WhatYouDo" sm={2}>What You Do</Label>
+                                <Col className="input" sm={10}>
+                                    <Input type="textarea" name="whatYouDo" onChange={(event) => this.props.onInputChange(event, "whatYouDo")}
+                                        placeholder="I'm a badass web developer. I write Javascript ...." />
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Label for="DisplayPicture" sm={2}>Display Picture</Label>
+                                <Col className="input" sm={10}>
+                                    <Input type="file" onChange={(event) => this.props.onInputChange(event, "image")} name="image" />
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Label for="SocialLinks" sm={2}>Social Links</Label>
+                                <Col className="input" sm={3}>
+                                    <Input type="url" onChange={(event) => this.props.onInputChange(event, "facebook")} name="facebook" placeholder="Facebook" />
 
-                        <FormGroup check row>
-                            <Col className="input submit-btn btn btn-light" sm={{ size: 2, offset: 2 }}>
-                                SUBMIT
-                            </Col>
-                        </FormGroup>
-                    </Form>
+                                </Col>
+                                <Col className="input" sm={3}>
+                                    <Input type="url" onChange={(event) => this.props.onInputChange(event, "linkedin")} name="linkedin" placeholder="LinkedIn" />
+                                </Col>
+                                <Col className="input" sm={3}>
+                                    <Input type="url" onChange={(event) => this.props.onInputChange(event, "github")} name="github" placeholder="GitHub" />
+                                </Col>
+                                <Col sm={2}>
+                                </Col>
+                                <Col className="input" sm={3}>
+                                    <Input type="url" onChange={(event) => this.props.onInputChange(event, "dribble")} name="dribble" placeholder="Dribbble" />
+                                </Col>
+                                <Col className="input" sm={3}>
+                                    <Input type="url" onChange={(event) => this.props.onInputChange(event, "behance")} name="behance" placeholder="Behance" />
+                                </Col>
+                                <Col className="input" sm={3}>
+                                    <Input type="url" onChange={(event) => this.props.onInputChange(event, "twitter")} name="twitter" placeholder="Twitter" />
+                                </Col>
+                            </FormGroup>
+
+                            <FormGroup check row>
+                                <Col className="" sm={{ size: 2, offset: 2 }}>
+                                    {this.props.loading ? <div className="spinner-grow text-primary" role="status">
+                                        <span className="sr-only">Loading...</span>
+                                    </div> : <button onClick={this.props.onDetailsFormSubmit} type="submit" className="submit-btn btn btn-light"> SUBMIT </button>}
+                                </Col>
+                            </FormGroup>
+                        </Form>
 
 
-                </div>
+                    </div>
                 </div>
             </section>
 

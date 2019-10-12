@@ -31,8 +31,8 @@ class Login extends Component {
                             <p className="errorMessage"> {this.props.errorMessage}</p>
 
                             <div className="input">
-                                <input  onChange={(event) => this.props.onInputChange(event, "username")} type="text" placeholder="Username" name="username" required />
-                                <span className="fa fa-user"></span>
+                                <input  onChange={(event) => this.props.onInputChange(event, "email")} type="email" placeholder="Email" name="email" required />
+                                <span className="fa fa-envelope"></span>
                             </div>
                             <div className="input">
                                 <input  onChange={(event) => this.props.onInputChange(event, "password")} type="password" placeholder="Password" name="password" required />

@@ -1,5 +1,6 @@
 header{
-    background-image:linear-gradient(rgba(253, 243, 243, -0.6),rgba(199, 199, 199, 0)), url(images/header.jpg);
+    /* background-image:linear-gradient(rgba(253, 243, 243, -0.6),rgba(136, 136, 136, 0)), url(images/header.jpg); */
+    background-image: linear-gradient(rgb(23, 23, 23, 0.5),rgba(136, 136, 136, 0)), url(images/header.jpg);
 	background-size: cover;
 	background-position: center;
 	height: 100vh;
