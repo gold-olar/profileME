@@ -53,12 +53,7 @@ class DetailsForm extends Component {
                                         placeholder="I'm a badass web developer. I write Javascript ...." />
                                 </Col>
                             </FormGroup>
-                            <FormGroup row>
-                                <Label for="DisplayPicture" sm={2}>Display Picture</Label>
-                                <Col className="input" sm={10}>
-                                    <Input type="file" onChange={(event) => this.props.onInputChange(event, "image")} name="image" />
-                                </Col>
-                            </FormGroup>
+                            
                             <FormGroup row>
                                 <Label for="SocialLinks" sm={2}>Social Links</Label>
                                 <Col className="input" sm={3}>
