@@ -12,3 +12,7 @@
 .card-form{
     padding: 5%;
 }
+.link-to-p{
+    font-size: 50%;
+    text-decoration: none !important;
+}

@@ -61,21 +61,17 @@ class App extends Component {
         try {
           this.setState({ errorMessage: " " });
           const signUp = await axios.post('/register', { username, email, password });
-          console.log(signUp)
 
 
           if (signUp.data.HttpStatus === 200) {
-            console.log('e wan go login');
             const login = await axios.post('/login', { email, password });
-            
-            const { token } = login.data.data;
-            // console.log(token)
 
+            const { token } = login.data.data;
 
             axios.defaults.headers.common['auth'] = token ;
             return this.setState({ auth: true , loading: false, token});
-          }else{
-            // console.log(signUp.data.message)
+          } else {
+            
             this.setState({
               loading: false, errorMessage: signUp.data.message
             })
@@ -92,7 +88,7 @@ class App extends Component {
         });
       }
     } else {
-      return this.setState({ errorMessage: "Please fill in required fields." });
+      return this.setState({ errorMessage: "Please fill in all required fields." });
 
     }
   }
@@ -117,7 +113,7 @@ class App extends Component {
             errorMessage: login.data.message
           })
 
-        } 
+        }
       } catch (error) {
         this.setState({ loading: false, errorMessage: "Something went wrong." })
         console.log(error)
@@ -145,24 +141,29 @@ class App extends Component {
 
   onDetailsFormSubmit = async (event) => {
     event.preventDefault();
-    this.setState({
-      loading: true,
 
-    })
 
     const {  firstName,lastName,introduction,whatYouDo, image, facebook,
       dribble, linkedin, behance, github, twitter,
      token} = this.state;
-    const profileDetails = { 
+    const profileDetails = {
       firstName,lastName,introduction,whatYouDo, image, facebook,
       dribble, linkedin, behance, github, twitter }
 
      if(firstName && lastName){
-      
+      this.setState({
+        loading: true,
+  
+      })
+
       const detailsFormResponse = await axios.put('/editProfile', profileDetails, {  headers: { token: token  }, });
-      if (detailsFormResponse){
-        this.setState({ loading: false, })
-        console.log(detailsFormResponse.data);
+      console.log(detailsFormResponse)
+      if (detailsFormResponse.data.status){
+        this.setState({ 
+          loading: false,
+          successMessage: detailsFormResponse.data.message,
+         })
+         console.log(this.props)
 
       }
 
@@ -187,7 +188,9 @@ class App extends Component {
                 onInputChange={this.onInputChange}
                 loading={this.state.loading}
                 onDetailsFormSubmit={this.onDetailsFormSubmit}
-
+                errorMessage={this.state.errorMessage}
+                successMessage={this.state.successMessage}
+                username={this.state.username}
               />} />
               :
               <Route path='/details' exact render={(props) =>

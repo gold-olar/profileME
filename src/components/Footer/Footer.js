@@ -24,7 +24,7 @@ const Footer = () => {
                             </div>
                         </div>
                         <div className="copyright text-center">
-                            <p> © {new Date().getFullYear()} alphaDevs. All Rights Reserved  </p>
+                            <p> © {new Date().getFullYear()} ProfileMe. All Rights Reserved  </p>
                         </div>
                     </div>
                 </footer>

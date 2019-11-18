@@ -56,21 +56,6 @@ class Signup extends Component {
                                 <span className="sr-only">Loading...</span>
                             </div> : <button onClick={this.props.onSignupFormSubmit} type="submit" className="submit-btn btn btn-light"> SIGN UP</button>}
                         </form>
-                        <hr />
-                        <p className="or bottom-text-pmls" >Or </p>
-                        <div className="other-options">
-                            {/* <GoogleLogin
-                                clientId={'658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'}
-                                onSuccess={this.responseGoogle}
-                                onFailure={this.responseGoogle} >
-                                
-                                <span> Signup with Google</span>
-                            </GoogleLogin> */}
-
-                           
-                        </div>
-
-
                     </div>
                 </div>
 
